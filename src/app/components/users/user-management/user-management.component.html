@@ -1,0 +1,8 @@
+<div class="container row">
+    <div class="column col-6">
+        <app-user-create (createdUser)="onCreatedUser($event)"></app-user-create>
+    </div>
+    <div class="column col-6">
+      <app-user-list [userToDisplay]="createdUser"></app-user-list>
+    </div>
+</div>

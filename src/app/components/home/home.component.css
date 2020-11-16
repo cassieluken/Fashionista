@@ -1,0 +1,14 @@
+.carousel-caption {
+    text-align: center;
+    top: 0;
+}
+.jumbotron {
+    background-color: black;
+    opacity: 0.8;
+    margin: 68px;
+    color: white;
+}
+.registerbtn {
+    opacity: 1.0;
+    color: red;
+}

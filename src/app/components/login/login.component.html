@@ -1,0 +1,46 @@
+
+<!-- <form>
+    <div class="form-group"> this is data driven
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="uemail" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="upw">
+    </div>
+    <button type="button" (click)="login()" class="btn btn-primary">Submit</button>
+</form>
+ -->
+<app-header></app-header>
+<br>
+<h4>Login Here:</h4>
+<div *ngIf="error">
+    <hr>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true" (click)="hideError()">&times;</span></button>
+        <strong>Invalid Login Credentials</strong> Please register or enter valid credentials. 
+    </div>
+    <hr>
+</div>
+<form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pw" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pw" formControlName="pw">
+        </div>
+    </div>
+      
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,69 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-4" *ngFor="let product of products">
+        <!-- <img src='{{ product.image }}'> -->
+        <input type="image" src="{{product.image}}" data-toggle="modal" data-target="#staticBackdrop" (click)=showModal(product)/>
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button> -->
+        <p>{{product.name}}</p>
+        <p>${{product.price}}</p>
+      </div>
+      
+    </div>
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add to Cart or Wishlist</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>{{msg}}</p>
+            <form class="form-horizontal" [formGroup]="productForm" (ngSubmit)="updateProduct()" *ngIf="productForm">
+                
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="name" formControlName="name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <input type="hidden" class="form-control" id="image" formControlName="image">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <input type="hidden" min="1" step="any" class="form-control" id="price" formControlName="price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="quantity" class="col-sm-2 control-label">Quantity</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" class="form-control" id="quantity" formControlName="quantity">
+                    </div>
+                    <!-- figure out thow to max the quantity so they can't grab more than available -->
+                </div>      
+                                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <small>**need to add alert after button press but the actions get performed there is just no notification yet</small>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addToWishlist()">+Wishlist</button>
+          <button type="button" class="btn btn-primary" (click)="addToCart()">+Cart</button>
+          <!-- figure out alerts after clicking button -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

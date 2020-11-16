@@ -1,0 +1,106 @@
+<h4>Products:</h4>
+
+<table *ngIf="products.length > 0" class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- come back to the update -->
+        <tr *ngFor="let product of products">
+            <!-- <td><input type="text" placeholder="{{ product.name }}"/></td> -->
+            <td>{{product.name}}</td>
+            <td>{{ product.type }}</td>
+            <td><img src='{{ product.image }}'></td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <!-- <td> <a class="delete" (click)="delete(product._id)">Delete</a> <a class="update" (click)="updateProduct(product)">Update</a></td> -->
+            <td> <a class="delete" (click)="delete(product._id)">Delete</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" (click)="showUpdateModal(product)">
+                    Update
+                </button>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="products.length === 0" class="alert alert-info" role="info">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Information:</span>
+    The product collection is empty.
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- form fields -->
+          <form class="form-horizontal" [formGroup]="productForm" (ngSubmit)="updateProduct()" *ngIf="productForm">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" formControlName="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <div class="col-sm-10">
+                <select id="type" class="form-control" formControlName="type">
+                  <option selected>Tops</option>
+                  <option>Bottoms</option>
+                  <option>Dresses</option>
+                  <option>Shoes</option>
+                  <option>Accessory</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="image" class="col-sm-2 control-label">Image Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="image" formControlName="image">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price" class="col-sm-2 control-label">Price</label>
+                <div class="col-sm-10">
+                    $<input type="number" min="1" step="any" class="form-control" id="price" formControlName="price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="quantity" class="col-sm-2 control-label">Quantity</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="quantity" formControlName="quantity">
+                </div>
+            </div> 
+            
+            <!-- <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Create</button>
+                </div>
+            </div> -->
+            
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateProduct()">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
