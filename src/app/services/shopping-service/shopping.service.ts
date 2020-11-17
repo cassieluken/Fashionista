@@ -50,6 +50,9 @@ export class ShoppingService {
   addToCart(data){
     return this.http.post('http://localhost:3000/api/users/addToCart',data);
   }
+  updateQuantity(data){
+    return this.http.put('http://localhost:3000/api/users/updateQuantity',data);
+  }
 
   
 }

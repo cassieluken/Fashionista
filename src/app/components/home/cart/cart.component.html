@@ -23,7 +23,9 @@
             <!-- <td> <a class="delete" (click)="delete(product._id)">Delete</a> <a class="update" (click)="updateProduct(product)">Update</a></td> -->
             <td> 
                 <button type="button" class="btn btn-danger" (click)="delete(product._id)">Delete</button>
-                <button type="button" class="btn btn-primary" (click)="updateQuantity(product._id)">Update Quantity</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropUpdate" (click)="updateQuantityModal(product)">
+                    Update Quantity
+                </button>                
                 <!-- <a class="delete" (click)="delete(product._id)">Delete</a> -->
             </td>
 
@@ -35,13 +37,47 @@
     <!-- <a class="move" (click)="makePurchase(products)">Purchase</a> -->
 </table>
 
-<div *ngIf="products.length === 0" class="alert alert-success" role="alert">
+<div *ngIf="products.length === 0" class="alert alert-info" role="info">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     <span class="sr-only">Information:</span>
     Your cart is empty. <a [routerLink]="['/','home','shop']" class="alert-link">Click here to add items to your cart shopper</a>
 </div>
 
-<!-- Modal -->
+<!-- Modal for update quantity-->
+<div class="modal fade" id="staticBackdropUpdate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Quantity</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- form fields -->
+          <form class="form-horizontal" [formGroup]="updateForm" (ngSubmit)="updateQuantity()" *ngIf="updateForm">
+            <div class="form-group">
+                <label for="quantity" class="col-sm-2 control-label">Quantity</label>
+                <div class="col-sm-10">
+                    <input type="number" min="1" class="form-control" id="quantity" formControlName="quantity">
+                </div>
+            </div> 
+            <!-- TODO ADD back other fields and hide them, then figure out max for quantity -->
+        </form>
+        </div>
+        <div class="modal-footer">
+            <div *ngIf="successMsg.length > 0" class="alert alert-info" role="info">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{successMsg}}
+            </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateQuantity()">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal for purchase -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

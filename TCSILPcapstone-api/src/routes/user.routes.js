@@ -29,7 +29,13 @@ router.delete('/deleteProductCart/:id',async(req,res)=>{
         } 
     })
 });
-
+router.put('/updateQuantity',async(req,res)=>{
+    const data = req.body;
+    //console.log(data);
+    const product = await CartModel.findByIdAndUpdate({_id: data._id},data);
+    res.json(product);
+    //not working yet
+})
 
 
 //WISHLIST CRUD

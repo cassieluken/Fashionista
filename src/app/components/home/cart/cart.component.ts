@@ -11,9 +11,12 @@ import { ShoppingService } from 'src/app/services/shopping-service/shopping.serv
 })
 export class CartComponent implements OnInit {
   products: Array<IProduct> = [];
+  updatedProduct: IProduct = null;
   product: IProduct; 
   payTotal: number;
   purchaseForm: FormGroup;
+  updateForm: FormGroup;
+  successMsg: String = '';
   constructor(protected shoppingService: ShoppingService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -31,8 +34,22 @@ export class CartComponent implements OnInit {
   delete(id: string) {
     this.shoppingService.deleteProductCart(id).toPromise().then((result: any) => this.loadAll());
   }
+  updateQuantityModal(product){
+    //equivalant to showUpdateModal(product){} in product-list
+    this.updatedProduct = product;
+    this.updateForm = this.formBuilder.group({
+      name: this.formBuilder.control(product.name, [Validators.required]),
+      quantity: this.formBuilder.control(product.quantity, [Validators.required]),
+      _id: this.updatedProduct._id
+    })
+  }
   updateQuantity(){
-
+    const values = this.updateForm.value;
+    this.shoppingService.updateQuantity(values).toPromise().then((result)=>{
+      const index = this.products.findIndex(x=>x._id === values._id);
+      this.products[index] = values;
+    })
+    this.successMsg = `You have changed your quantity for ${this.updatedProduct}`
   }
 
   makePurchase(products){

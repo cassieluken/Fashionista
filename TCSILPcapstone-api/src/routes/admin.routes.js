@@ -31,7 +31,6 @@ router.put('/updateProduct',async(req,res)=>{
     //console.log(data);
     const product = await ProductModel.findByIdAndUpdate({_id: data._id},data);
     res.json(product);
-    //not working yet
 })
 
 //***************** USER CRUD **********************//
