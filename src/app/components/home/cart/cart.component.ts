@@ -31,6 +31,9 @@ export class CartComponent implements OnInit {
   delete(id: string) {
     this.shoppingService.deleteProductCart(id).toPromise().then((result: any) => this.loadAll());
   }
+  updateQuantity(){
+
+  }
 
   makePurchase(products){
     console.log("IN MAKE PURCHASE");

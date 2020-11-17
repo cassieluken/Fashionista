@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product-service/product.service
 })
 export class ProductListComponent implements OnInit {
   updatedProduct: IProduct = null;
+  successMsg: String = '';
   productForm: FormGroup;
   products: Array<IProduct> = [];
   @Input() productToDisplay: IProduct = null;
@@ -53,6 +54,7 @@ export class ProductListComponent implements OnInit {
       const index = this.products.findIndex(x=>x._id === values._id); //this one too
       this.products[index] = values; //put inside service call
     })
+    this.successMsg = `You have updated product: ${this.updatedProduct.name}, you may now close this menu`;
     
   }
   showUpdateModal(product){

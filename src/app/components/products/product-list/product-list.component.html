@@ -21,7 +21,9 @@
             <td>{{ product.price }}</td>
             <td>{{ product.quantity }}</td>
             <!-- <td> <a class="delete" (click)="delete(product._id)">Delete</a> <a class="update" (click)="updateProduct(product)">Update</a></td> -->
-            <td> <a class="delete" (click)="delete(product._id)">Delete</a>
+            <td> 
+                <button type="button" class="btn btn-danger" (click)="delete(product._id)"> Delete </button>
+                <!-- <a class="delete" (click)="delete(product._id)">Delete</a> -->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" (click)="showUpdateModal(product)">
                     Update
@@ -98,6 +100,10 @@
         </form>
         </div>
         <div class="modal-footer">
+            <div *ngIf="successMsg.length > 0" class="alert alert-info" role="info">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{successMsg}}
+            </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" (click)="updateProduct()">Understood</button>
         </div>

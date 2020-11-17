@@ -12,6 +12,7 @@ export class UserListComponent implements OnInit {
   users: Array<IUser> = [];
   userForm: FormGroup;
   updatedUser: IUser = null;
+  successMsg: String = '';
   @Input() userToDisplay: IUser = null;
   constructor(protected userService: UserService, protected formBuilder: FormBuilder) { }
 
@@ -50,6 +51,8 @@ export class UserListComponent implements OnInit {
       const index = this.users.findIndex(x=>x._id === values._id); //this one too
       this.users[index] = values; //put inside service call
     })
+    this.successMsg = `You have updated user: ${this.updatedUser.name}, you may now close this menu`;
+
     
   }
   showUpdateModal(user){

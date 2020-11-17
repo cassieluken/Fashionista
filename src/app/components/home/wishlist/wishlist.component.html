@@ -21,8 +21,11 @@
             <td>{{ product.price }}</td>
             <td>{{ product.quantity }}</td>
             <!-- <td> <a class="delete" (click)="delete(product._id)">Delete</a> <a class="update" (click)="updateProduct(product)">Update</a></td> -->
-            <td> <a class="delete" (click)="delete(product._id)">Delete</a>
-                <a class="move" (click)="move(product._id,product)">Move to Cart</a>
+            <td> 
+                <button type="button" class="btn btn-danger" (click)="delete(product._id)">Delete</button>
+                <!-- <a class="delete" (click)="delete(product._id)">Delete</a> -->
+                <!-- <a class="move" (click)="move(product._id,product)">Move to Cart</a> -->
+                <button type="button" class="btn btn-primary" (click)="move(product._id,product)">Move to Cart</button>
             </td>
 
         </tr>
