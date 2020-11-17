@@ -56,7 +56,11 @@
             </form>
         </div>
         <div class="modal-footer">
-          <small>**need to add alert after button press but the actions get performed there is just no notification yet</small>
+          <!-- <small>**need to add alert after button press but the actions get performed there is just no notification yet</small> -->
+          <div *ngIf="successMsg.length > 0" class="alert alert-info" role="info">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{successMsg}}
+          </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" (click)="addToWishlist()">+Wishlist</button>
           <button type="button" class="btn btn-primary" (click)="addToCart()">+Cart</button>

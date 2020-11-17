@@ -10,7 +10,7 @@ import { ShoppingService } from 'src/app/services/shopping-service/shopping.serv
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  msg: string;
+  successMsg: string ='';
   wantedProduct: IProduct = null;
   products: Array<IProduct> = []; 
   productForm: FormGroup;
@@ -43,8 +43,9 @@ export class ShopComponent implements OnInit {
     console.log(this.wantedProduct);
     this.shoppingService.addToCart(values).subscribe((result:any)=>{
       console.log(result);
-      let msg = `${result.quantity} ${result.name} was added to your Cart!`;
     })
+    this.successMsg = `${this.wantedProduct.quantity} ${this.wantedProduct.name} was added to your Cart!`;
+
   }
   addToWishlist(){
     const values = this.productForm.value;
@@ -52,8 +53,9 @@ export class ShopComponent implements OnInit {
     console.log(this.wantedProduct);
     this.shoppingService.addToWishlist(values).subscribe((result:any)=>{
       console.log(result);
-      let msg = `${result.quantity} ${result.name} was added to your Cart!`;
     })
+    this.successMsg = `${this.wantedProduct.quantity} ${this.wantedProduct.name} was added to your Wishlist!`;
+
   }
   
 }
