@@ -1,9 +1,9 @@
-
+<br>
 <div class="container">
     <div class="row">
-      <div class="col-4" *ngFor="let product of products">
+      <div class="col-3" *ngFor="let product of products">
         <!-- <img src='{{ product.image }}'> -->
-        <input type="image" src="{{product.image}}" data-toggle="modal" data-target="#staticBackdrop" (click)=showModal(product)/>
+        <input type="image" src="{{product.image}}" width="200" height="275" data-toggle="modal" data-target="#staticBackdrop" (click)=showModal(product)/>
         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
             Launch static backdrop modal
         </button> -->
