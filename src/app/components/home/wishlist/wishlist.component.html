@@ -34,3 +34,7 @@
     <span class="sr-only">Information:</span>
     Your wishlist is empty. <a [routerLink]="['/','home','shop']" class="alert-link">Click here to add items to your wishlist shopper</a>
 </div>
+<div *ngIf="successMsg.length > 0" class="alert alert-info" role="info">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    {{successMsg}}
+</div>

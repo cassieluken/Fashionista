@@ -10,6 +10,7 @@ import { ShoppingService } from 'src/app/services/shopping-service/shopping.serv
 export class WishlistComponent implements OnInit {
   products: Array<IProduct> = [];
   product: IProduct = null;
+  successMsg: String = '';
   constructor(protected shoppingService : ShoppingService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,11 @@ export class WishlistComponent implements OnInit {
   }
   move(id:string, product){
     this.product = product;
+    // console.log("WISHLIST MOVE FUNC");
+    // console.log(id);
+    // console.log(this.product); BOTH SHOW UP HERE PROBLEM NOT HERE
     this.shoppingService.moveToCart(id,this.product).toPromise().then((result: any)=> this.loadAll());
+    //this.shoppingService.deleteWishlist(id);
+    this.successMsg = 'You have successfully added to your cart, you may now delete this item from your wishlist if you want.';
   }
 }
